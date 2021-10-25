@@ -1,18 +1,38 @@
 package com.dentalservice.model;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+@Entity
+@Embeddable
 public class Dentist {
-
-	private Long id;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)	
+	@Column(name="id")
+	private int id;
+	
+	@Column(name="name")
 	private String name;
+	
+	@Column(name="surname")	
 	private String surname;
+	
+	@Column(name="jmbg")
 	private int jmbg;
-	private int phoneNumber;
-
-	public Long getId() {
+	
+	@Column(name="phone")
+	private int phone;
+	
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -40,12 +60,33 @@ public class Dentist {
 		this.jmbg = jmbg;
 	}
 
-	public int getPhoneNumber() {
-		return phoneNumber;
+	public int getPhone() {
+		return phone;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setPhone(int phone) {
+		this.phone = phone;
+	}
+	
+	public Dentist() {
+		super();
+	}
+
+	public Dentist(String name, String surname, int jmbg, String email, int phone) {
+		super();
+		this.name = name;
+		this.surname = surname;
+		this.jmbg = jmbg;
+		this.phone = phone;
+	}
+
+	public Dentist(int id, String name, String surname, int jmbg, String email, int phone) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.surname = surname;
+		this.jmbg = jmbg;
+		this.phone = phone;
 	}
 
 }
