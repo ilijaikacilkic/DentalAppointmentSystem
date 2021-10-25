@@ -1,6 +1,8 @@
 package com.dentalservice.model;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,13 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-@Embeddable
 public class Dentist {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)	
 	@Column(name="id")
-	private int id;
+	private Long id;
 	
 	@Column(name="name")
 	private String name;
@@ -28,11 +29,14 @@ public class Dentist {
 	@Column(name="phone")
 	private int phone;
 	
-	public int getId() {
+	@OneToMany
+	List<Appointment> dentistAppointments = new ArrayList<Appointment>();
+	
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -80,7 +84,7 @@ public class Dentist {
 		this.phone = phone;
 	}
 
-	public Dentist(int id, String name, String surname, int jmbg, String email, int phone) {
+	public Dentist(Long id, String name, String surname, int jmbg, String email, int phone) {
 		super();
 		this.id = id;
 		this.name = name;
